@@ -1,4 +1,5 @@
 package pk;
+
 import java.util.Arrays;
 import java.util.Random;
 
@@ -11,5 +12,5 @@ public class Dice {
         Random bag = new Random();
         return Faces.values()[bag.nextInt(howManyFaces)];
     }
-    
+
 }
