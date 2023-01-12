@@ -1,6 +1,5 @@
 package pk;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class Dice {
@@ -15,10 +14,12 @@ public class Dice {
 
     int turnScore = 0;
 
+    int gamesWon = 0;
+
     public Faces roll() {
         int howManyFaces = Faces.values().length;
-        System.out.println("  (DEBUG) there are " + howManyFaces + " faces");
-        System.out.println("  (DEBUG) " + Arrays.toString(Faces.values()));
+        // System.out.println(" (DEBUG) there are " + howManyFaces + " faces");
+        // System.out.println(" (DEBUG) " + Arrays.toString(Faces.values()));
         Random bag = new Random();
         return Faces.values()[bag.nextInt(howManyFaces)];
     }
@@ -26,14 +27,16 @@ public class Dice {
     public int calculateTurnScore(Faces rollResult) {
         if (rollResult.toString().equals("DIAMOND") || rollResult.toString().equals("GOLD")) {
             if (rollResult.toString().equals("DIAMOND")) {
+                // System.out.println("score");
                 diamond += 100;
             } else if (rollResult.toString().equals("GOLD")) {
+                // System.out.println("score");
                 gold += 100;
-            } else if (rollResult.toString().equals("SKULL")) {
-                skull += 1;
-                numDices--;
             }
             turnScore = diamond + gold;
+        } else if (rollResult.toString().equals("SKULL")) {
+            skull++;
+            numDices--;
         }
 
         return turnScore;
@@ -47,6 +50,10 @@ public class Dice {
 
     public int getTotalScore() {
         return totalScore;
+    }
+
+    public int getTurnScore() {
+        return turnScore;
     }
 
     public int getSkull() {
@@ -72,10 +79,25 @@ public class Dice {
         skull = 0;
     }
 
+    public void resetTurnScore() {
+        turnScore = 0;
+        diamond = 0;
+        gold = 0;
+    }
+
     public void resetScore() {
         diamond = 0;
         gold = 0;
         totalScore = 0;
+        turnScore = 0;
+    }
+
+    public int gamesWon() {
+        return gamesWon;
+    }
+
+    public void wonGame() {
+        gamesWon++;
     }
 
 }
