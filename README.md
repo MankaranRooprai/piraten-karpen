@@ -23,7 +23,7 @@ Remark: **We are assuming here you are using a _real_ shell (e.g., anything but 
 - Status:
   - Pending (P), Started (S), Blocked (B), Done (D)
 - Definition of Done (DoD):
-  - < Your DoD goes here >
+  - Feature works according to the feature requirements. Feature can be implemented whenever needed easily due to OOP principles. Feature can be easily maintained if a change needs to be made.
 
 ### Backlog
 
