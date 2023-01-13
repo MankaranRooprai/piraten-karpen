@@ -27,12 +27,15 @@ Remark: **We are assuming here you are using a _real_ shell (e.g., anything but 
 
 ### Backlog
 
-| MVP? | Id  | Feature                                    | Status  | Started  | Delivered |
-| :--: | :-: | ------------------------------------------ | :-----: | :------: | :-------: |
-|  x   | F01 | Roll a dice                                |    D    | 01/01/23 | 01/12/23  |
-|  x   | F02 | Roll eight dices                           | B (F01) |          |           |
-|  x   | F03 | Select how many games as command-line arg. |    P    |          |           |
-|  x   | F04 | end of game with three cranes              |    P    |          |           |
-|  x   | F05 | Player keeping random dice at their turn   | B (F02) |          |           |
-|  x   | F06 | Score points: 3-of-a-kind                  | B (F04) |          |           |
-| ...  | ... | ...                                        |         |          |           |
+| MVP? | Id  | Feature                                                                                    | Status | Started  | Delivered |
+| :--: | :-: | ------------------------------------------------------------------------------------------ | :----: | :------: | :-------: |
+|  x   | F01 | Roll a dice                                                                                |   P    | 01/01/23 | 01/12/23  |
+|  x   | F02 | Roll eight dices                                                                           |   P    | 01/12/23 | 01/13/23  |
+|  x   | F03 | Compute score by counting the numbers of gold coins and diamonds and multiplying it by 100 |   P    | 01/11/23 | 01/13/23  |
+|  x   | F04 | Implement second player                                                                    |   P    | 01/12/23 | 01/12/23  |
+|  x   | F05 | Reroll until 3 skulls accumulated or 6000 points reached                                   |   P    | 01/12/23 | 01/13/23  |
+|  x   | F06 | Roll random number of dice after the first turn                                            |   P    | 01/12/23 | 01/12/23  |
+|  x   | F07 | End game once at least 6000 points is reach by each player                                 |   P    | 01/12/23 | 01/12/23  |
+|  x   | F08 | Run 42 simulations                                                                         |   P    | 01/12/23 | 01/12/23  |
+|  x   | F09 | Print each player's win percentage                                                         |   P    | 01/12/23 | 01/13/23  |
+| ...  | ... | ...                                                                                        |        |          |           |

@@ -16,7 +16,7 @@ public class Dice {
 
     int gamesWon = 0;
 
-    public Faces roll() {
+    public static Faces roll() {
         int howManyFaces = Faces.values().length;
         // System.out.println(" (DEBUG) there are " + howManyFaces + " faces");
         // System.out.println(" (DEBUG) " + Arrays.toString(Faces.values()));
@@ -43,9 +43,100 @@ public class Dice {
 
     }
 
+    public void rollAllDice() {
+        // store roll result
+        Faces rollResult = roll();
+        // calculate player's turn score
+        calculateTurnScore(rollResult);
+        // System.out.println("Skulls: " + player.getSkull());
+    }
+
+    public void turnResult() {
+        calculateTotalScore();
+        // System.out.println("Total score: " + player.getTotalScore());
+        resetTurnScore();
+        // increase the turns player1 has by 1
+        increaseNumTurns();
+    }
+
+    public void turn() {
+
+        Random rand = new Random();
+
+        // get the number of dice and turns both players have
+
+        int numDices = getNumDices();
+        int numTurns = getNumTurns();
+
+        boolean firstTurn = true;
+
+        // while player1 has not accumulated 3 skulls, keep rolling
+        while (getSkull() < 3 && getTotalScore() < 6000) {
+            // player1's first turn
+            if (firstTurn && numTurns == 1) {
+
+                // System.out.println("NUMBER OF DICE AVAILABLE TO ROLL: " + numDices);
+
+                // roll each dice
+                for (int i = 0; i < 8; i++) {
+                    rollAllDice();
+                }
+
+                // if player has less than 3 skulls then calculate the total score otherwise
+                // they score no points this turn
+                if (getSkull() < 3) {
+                    // calculates the total score and increases the number of turns player has
+                    // played
+                    turnResult();
+                    numTurns = getNumTurns();
+                    // update number of dices player1 will roll for every subsequent turn
+                    numDices = getNumDices();
+                    // after player1's first turn
+                } else {
+                    // System.out.println("TOTAL SCORE ONCE TERMINATED: " + player.getTotalScore());
+                    turnResult();
+                    endTurn();
+                    break;
+                }
+
+                firstTurn = false;
+
+            } else {
+
+                // select dice to roll from at least 2 to a random number less than the number
+                // of dice available
+                // System.out.println("NUMBER OF DICE AVAILABLE TO ROLL: " + numDices);
+                numDices = rand.nextInt((numDices - 2) + 1) + 2;
+                // System.out.println("HOW MANY DICE I AM PICKING: " + numDices);
+
+                // roll each dice
+                for (int i = 0; i < numDices; i++) {
+                    rollAllDice();
+                }
+
+                // if player has less than 3 skulls then calculate the total score otherwise
+                // they score no points this turn
+                if (getSkull() < 3) {
+                    // calculates the total score and increases the number of turns player has
+                    // played
+                    turnResult();
+                    numTurns = getNumTurns();
+                    // update number of dices player1 will roll for every subsequent turn
+                    numDices = getNumDices();
+                    // after player1's first turn
+                } else {
+                    turnResult();
+                    // System.out.println("TOTAL SCORE ONCE TERMINATED: " + player.getTotalScore());
+                    endTurn();
+                    break;
+                }
+            }
+        }
+
+    }
+
     public void calculateTotalScore() {
         totalScore += turnScore;
-
     }
 
     public int getTotalScore() {
