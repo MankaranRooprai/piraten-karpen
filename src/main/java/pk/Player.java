@@ -61,17 +61,11 @@ public class Player {
                 firstRoll = false;
             } else {
                 diceAvailable = rand.nextInt((numDices - 2) + 1) + 2;
-                // System.out.println("Number of dice total: " + numDices);
-                // System.out.println("Number of rolls: " + diceAvailable);
             }
 
             for (int i = 0; i < diceAvailable; i++) {
-                // System.out.println("DICES: " + numDices);
                 Faces rollResult = dice.roll();
-                // System.out.println(rollResult);
-                // System.out.println("ROLL SCORE before calculation: " + rollScore);
                 calculateRollScore(rollResult);
-                // System.out.println("ROLL SCORE AFTER CALCULATION: " + rollScore);
             }
 
             if (skulls >= 3) {
@@ -98,54 +92,6 @@ public class Player {
         diamond = 0;
         skulls = 0;
         rollScore = 0;
-        // while (dice.getSkull() < 3 && dice.getTotalScore() < 6000) {
-        // if (firstTurn && numTurns == 1) {
-
-        // System.out.println("NUMBER OF DICE AVAILABLE TO ROLL: " + numDices);
-
-        // // roll each dice
-        // for (int i = 0; i < 8; i++) {
-        // dice.rollAllDice();
-        // }
-
-        // if (dice.getSkull() < 3) {
-        // turnResult();
-        // numTurns = getNumTurns();
-        // numDices = getNumDices();
-        // } else {
-        // totalScore += turnScore;
-        // System.out.println("TOTAL SCORE ONCE TERMINATED: " + getTotalScore());
-        // turnScore = 0;
-        // break;
-        // }
-
-        // firstTurn = false;
-
-        // } else {
-        // System.out.println("NUMBER OF DICE AVAILABLE TO ROLL: " + numDices);
-        // numDices = rand.nextInt((numDices - 2) + 1) + 2;
-        // System.out.println("HOW MANY DICE I AM PICKING: " + numDices);
-
-        // for (int i = 0; i < numDices; i++) {
-        // rollAllDice();
-        // }
-
-        // if (getSkull() < 3) {
-
-        // turnResult();
-        // numTurns = getNumTurns();
-        // numDices = getNumDices();
-        // } else {
-        // turnResult();
-        // totalScore += turnScore;
-        // System.out.println("TOTAL SCORE ONCE TERMINATED: " + getTotalScore());
-        // turnScore = 0;
-        // break;
-
-        // }
-        // }
-        // }
-
     }
 
     public int getTotalScore() {
