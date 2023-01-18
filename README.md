@@ -37,5 +37,5 @@ Remark: **We are assuming here you are using a _real_ shell (e.g., anything but 
 |  x   | F06 | Roll random number of dice after the first turn                                            |   D    | 01/12/23 | 01/12/23  |
 |  x   | F07 | End game once at least 6000 points is reach by each player                                 |   D    | 01/12/23 | 01/12/23  |
 |  x   | F08 | Run 42 simulations                                                                         |   D    | 01/12/23 | 01/12/23  |
-|  x   | F09 | Print each player's win percentage                                                         |   D    | 01/12/23 | 01/13/23  |
+| MVP  | F09 | Print each player's win percentage                                                         |   D    | 01/12/23 | 01/13/23  |
 | ...  | ... | ...                                                                                        |        |          |           |
