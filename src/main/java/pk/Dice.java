@@ -1,7 +1,7 @@
 package pk;
 
 import java.util.Random;
-import pk.Player;
+import java.util.Arrays;
 
 public class Dice {
 

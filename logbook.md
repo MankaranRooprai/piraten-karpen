@@ -12,3 +12,9 @@ Added refinements to the code, including putting all relevant method in the Dice
 
 January 14, 2023
 Refined code to make it easier to read, and changed game to calculate score only when 3 skulls have been accumulated, not before.
+
+January 17, 2023
+Implemented log4j2 and now it writes into a log file and outputs to the console.
+
+January 18, 2023
+Created a Game.java class which has the game logic.

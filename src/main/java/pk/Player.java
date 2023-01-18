@@ -33,10 +33,8 @@ public class Player {
     public int calculateRollScore(Faces rollResult) {
         if (rollResult.toString().equals("DIAMOND") || rollResult.toString().equals("GOLD")) {
             if (rollResult.toString().equals("DIAMOND")) {
-                // System.out.println("score");
                 diamond += 100;
             } else if (rollResult.toString().equals("GOLD")) {
-                // System.out.println("score");
                 gold += 100;
             }
             rollScore = diamond + gold;
