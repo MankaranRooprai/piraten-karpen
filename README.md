@@ -35,7 +35,8 @@ Remark: **We are assuming here you are using a _real_ shell (e.g., anything but 
 |  x   | F04 | Implement second player                                                                    |   D    | 01/12/23 | 01/12/23  |
 |  x   | F05 | Reroll until 3 skulls accumulated or 6000 points reached                                   |   D    | 01/12/23 | 01/13/23  |
 |  x   | F06 | Roll random number of dice after the first turn                                            |   D    | 01/12/23 | 01/12/23  |
-|  x   | F07 | End game once at least 6000 points is reach by each player                                 |   D    | 01/12/23 | 01/12/23  |
+|  x   | F07 | End game once at least 6000 points is reached by each player                               |   D    | 01/12/23 | 01/12/23  |
 |  x   | F08 | Run 42 simulations                                                                         |   D    | 01/12/23 | 01/12/23  |
 | MVP  | F09 | Print each player's win percentage                                                         |   D    | 01/12/23 | 01/13/23  |
-| ...  | ... | ...                                                                                        |        |          |           |
+| ...  | F10 | Store roll data in a hashmap in order to count how many of each dice player has            |   D    | 01/18/23 | 01/19/23  |
+| ...  | F11 | Compute sets based on how many of each dice player has                                     |   D    | 01/19/23 | 01/19/23  |

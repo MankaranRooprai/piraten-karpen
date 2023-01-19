@@ -18,3 +18,6 @@ Implemented log4j2 and now it writes into a log file and outputs to the console.
 
 January 18, 2023
 Created a Game.java class which has the game logic.
+
+January 19, 2023
+Implemented a random strategy in which a player rerolls any random number of dice they have available to them, irrespective of any sets they have.

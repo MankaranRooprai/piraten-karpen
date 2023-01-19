@@ -11,6 +11,7 @@ public class PiratenKarpen {
         Dice dice2 = new Dice();
 
         Player player1 = new Player(dice1);
+
         Player player2 = new Player(dice2);
 
         Game game = new Game(player1, player2);

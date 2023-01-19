@@ -15,10 +15,12 @@ public class Game {
     }
 
     public void startGame() {
-        for (int i = 0; i < 42; i++) {
+        for (int i = 0; i < 1; i++) {
             while (player1.getTotalScore() < 6000 || player2.getTotalScore() < 6000) {
-                player1.turn();
-                player2.turn();
+                System.out.println("Player 1");
+                player1.randomRerollStrategy();
+                System.out.println("Player 2");
+                player2.randomRerollStrategy();
             }
 
             if (player1.getTotalScore() > player2.getTotalScore()) {
