@@ -113,6 +113,99 @@ public class Player {
 
     public void comboStrategy() {
 
+        Random rand = new Random();
+        boolean firstRoll = true;
+
+        while (skulls < 3 && totalScore < 6000) {
+
+            if (firstRoll) {
+                diceAvailable = 8;
+            } else {
+                numDices = 8 - skulls - diamond - gold;
+                for (String key : diceType.keySet()) {
+                    if (key != Faces.SKULL.toString() && key != Faces.DIAMOND.toString()
+                            && key != Faces.GOLD.toString()) {
+
+                        System.out.println("KEY PAIR: " + diceType.get(key));
+
+                        if (diceType.get(key) >= 3) {
+                            numDices -= diceType.get(key);
+                        }
+                    }
+                }
+                if (numDices >= 2) {
+                    diceAvailable = rand.nextInt((numDices - 2) + 1) + 2;
+                } else {
+                    sets();
+                    rollScore = (diamond + gold + setsScore) * 100;
+                    totalScore += rollScore;
+                    rollScore = 0;
+                    System.out.println("NUM ROLLS: " + rollCounter);
+                    System.out.println();
+                    System.out.println("END OF TURN");
+                    System.out.println();
+                    System.out.println();
+                    System.out.println("TURN SCORE: " + totalScore);
+                    System.out.println();
+                    numRolls++;
+                    break;
+                }
+            }
+
+            System.out.println("NUMBER OF DICE BEING ROLLED: " + diceAvailable);
+
+            for (int i = 0; i < diceAvailable; i++) {
+                Faces rollResult = dice.roll();
+                System.out.println("ROLL RESULT: " + rollResult);
+                calculateRollScore(rollResult);
+            }
+
+            if (skulls >= 3) {
+                rollCounter++;
+                System.out.println("NUM ROLLS: " + rollCounter);
+                System.out.println();
+                System.out.println("END OF TURN");
+                System.out.println();
+                if (!firstRoll) {
+                    totalScore += rollScore;
+                }
+                System.out.println();
+                System.out.println("TURN SCORE: " + totalScore);
+                System.out.println();
+                numRolls++;
+                break;
+            } else {
+                System.out.println("Roll score: " + rollScore);
+                System.out.println("ROLLING AGAIN");
+                rollCounter++;
+                System.out.println("NUM ROLLS: " + rollCounter);
+                rollScore = 0;
+                System.out.println("ROLL SCORE RESET: " + rollScore);
+            }
+
+            firstRoll = false;
+            // gold = 0;
+            // diamond = 0;
+            diceAvailable = 0;
+            // setsScore = 0;
+            numRolls++;
+            rollScore = 0;
+            // initialValues();
+        }
+
+        // System.out.println("TOTAL SCORE FOR PLAYER: " + totalScore);
+
+        numDices = 8;
+        diceAvailable = 8;
+        numRolls = 0;
+        firstRoll = true;
+        gold = 0;
+        diamond = 0;
+        skulls = 0;
+        rollScore = 0;
+        setsScore = 0;
+        initialValues();
+
     }
 
     public void randomRerollStrategy() {
