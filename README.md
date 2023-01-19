@@ -40,3 +40,4 @@ Remark: **We are assuming here you are using a _real_ shell (e.g., anything but 
 | MVP  | F09 | Print each player's win percentage                                                         |   D    | 01/12/23 | 01/13/23  |
 | ...  | F10 | Store roll data in a hashmap in order to count how many of each dice player has            |   D    | 01/18/23 | 01/19/23  |
 | ...  | F11 | Compute sets based on how many of each dice player has                                     |   D    | 01/19/23 | 01/19/23  |
+| ...  | F12 | Implement a combo strategy where a player doesn't reroll any dice part of a set (>=3)      |   D    | 01/19/23 | 01/19/23  |

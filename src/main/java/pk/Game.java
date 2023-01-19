@@ -15,7 +15,7 @@ public class Game {
     }
 
     public void startGame() {
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 42; i++) {
             while (player1.getTotalScore() < 6000 || player2.getTotalScore() < 6000) {
                 System.out.println("Player 1");
                 player1.comboStrategy();
