@@ -2,6 +2,7 @@ package pk;
 
 import pk.Dice;
 import pk.Faces;
+import pk.SeaBattleCards;
 
 import java.util.Random;
 import java.util.ArrayList;
@@ -29,20 +30,18 @@ public class Player {
     int setsScore = 0;
     int rollScore = 0;
 
+    int sabersRequired = 0;
+    int bonus = 0;
+
     HashMap<String, Integer> diceType = new HashMap<String, Integer>();
 
-    ArrayList<String> cardDeck = new ArrayList<String>();
+    SeaBattleCards cardDeck = new SeaBattleCards();
 
     Dice dice;
 
     public Player(Dice dice) {
         this.dice = dice;
-        for (int i = 0; i < 28; i++) {
-            cardDeck.add("nop");
-        }
-        for (int j = 0; j < 6; j++) {
-            cardDeck.add("Sea Battle");
-        }
+        cardDeck.populate();
         initialValues();
     }
 
@@ -113,11 +112,11 @@ public class Player {
         }
 
         sets();
-        rollScore = (diamond + gold + setsScore) * 100;
+        bonus = cardDeck.calculateBonus(diceType.get(Faces.SABER.toString()));
+        rollScore = ((diamond + gold + setsScore) * 100) + bonus;
         setsScore = 0;
         System.out.println("ROLL SCORE: " + rollScore);
         return rollScore;
-
     }
 
     public void comboStrategy() {
@@ -128,9 +127,12 @@ public class Player {
         while (skulls < 3 && totalScore < 6000) {
 
             if (firstRoll) {
-                int drawCard = rand.nextInt((35 - 1) + 1) + 1;
-                if (cardDeck.get(drawCard).equals("Saber ")) {
-
+                sabersRequired = cardDeck.drawRandom();
+                System.out.println("SABERS REQUIRED");
+                if (sabersRequired > 0) {
+                    System.out.println("SEA BATTLE ACTIVATED");
+                } else {
+                    System.out.println("NO SEA BATTLE");
                 }
                 diceAvailable = 8;
             } else {
@@ -217,6 +219,7 @@ public class Player {
         skulls = 0;
         rollScore = 0;
         setsScore = 0;
+        bonus = 0;
         initialValues();
 
     }

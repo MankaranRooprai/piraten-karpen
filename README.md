@@ -43,5 +43,5 @@ Remark: **We are assuming here you are using a _real_ shell (e.g., anything but 
 | ...  | F12 | Implement a combo strategy where a player doesn't reroll any dice part of a set (>=3)      |   D    | 01/19/23 | 01/19/23  |
 | ...  | F13 | Implement a combo strategy where a player doesn't reroll any diamond and gold dice         |   D    | 01/19/23 | 01/19/23  |
 | ...  | F14 | Implement 35 total cards, 6 of which are Sea Battle cards                                  |   D    | 01/23/23 | 01/23/23  |
-| ...  | F15 | Player draws a card at start of each turn                                                  |   P    | 01/23/23 |     -     |
+| ...  | F15 | Player draws a card at start of each turn                                                  |   D    | 01/23/23 | 01/23/23  |
 | ...  | F16 | Sea Battle Strategy where player only rerolls if dice is not a saber                       |   P    | 01/23/23 |     -     |
