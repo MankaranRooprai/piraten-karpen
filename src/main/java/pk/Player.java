@@ -4,6 +4,7 @@ import pk.Dice;
 import pk.Faces;
 
 import java.util.Random;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Player {
@@ -30,10 +31,18 @@ public class Player {
 
     HashMap<String, Integer> diceType = new HashMap<String, Integer>();
 
+    ArrayList<String> cardDeck = new ArrayList<String>();
+
     Dice dice;
 
     public Player(Dice dice) {
         this.dice = dice;
+        for (int i = 0; i < 28; i++) {
+            cardDeck.add("nop");
+        }
+        for (int j = 0; j < 6; j++) {
+            cardDeck.add("Sea Battle");
+        }
         initialValues();
     }
 
@@ -119,6 +128,10 @@ public class Player {
         while (skulls < 3 && totalScore < 6000) {
 
             if (firstRoll) {
+                int drawCard = rand.nextInt((35 - 1) + 1) + 1;
+                if (cardDeck.get(drawCard).equals("Saber ")) {
+
+                }
                 diceAvailable = 8;
             } else {
                 numDices = 8 - skulls - diamond - gold;
