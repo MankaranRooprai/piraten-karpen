@@ -18,7 +18,7 @@ public class Game {
         for (int i = 0; i < 1; i++) {
             while (player1.getTotalScore() < 6000 || player2.getTotalScore() < 6000) {
                 System.out.println("Player 1: " + player1.getTotalScore());
-                player1.comboStrategy();
+                player1.randomRerollStrategy();
                 System.out.println("Player 2: " + player2.getTotalScore());
                 player2.randomRerollStrategy();
             }

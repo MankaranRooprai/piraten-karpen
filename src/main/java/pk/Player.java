@@ -211,13 +211,9 @@ public class Player {
             }
 
             firstRoll = false;
-            // gold = 0;
-            // diamond = 0;
             diceAvailable = 0;
-            // setsScore = 0;
             numRolls++;
             rollScore = 0;
-            // initialValues();
         }
 
         // System.out.println("TOTAL SCORE FOR PLAYER: " + totalScore);
@@ -248,6 +244,14 @@ public class Player {
         while (skulls < 3 && totalScore < 6000) {
 
             if (firstRoll) {
+                sabersRequired = cardDeck.drawRandom();
+                System.out.println("SABERS REQUIRED");
+                if (sabersRequired > 0) {
+                    seaBattleMode = true;
+                    System.out.println("SEA BATTLE ACTIVATED");
+                } else {
+                    System.out.println("NO SEA BATTLE");
+                }
                 diceAvailable = 8;
             } else {
                 diceAvailable = rand.nextInt((numDices - 2) + 1) + 2;
@@ -267,7 +271,7 @@ public class Player {
                 System.out.println();
                 System.out.println("END OF TURN");
                 System.out.println();
-                if (!firstRoll) {
+                if ((sabersRequired <= diceType.get(Faces.SABER.toString())) && !firstRoll) {
                     totalScore += rollScore;
                 }
                 System.out.println();
@@ -294,8 +298,6 @@ public class Player {
             initialValues();
         }
 
-        // System.out.println("TOTAL SCORE FOR PLAYER: " + totalScore);
-
         numDices = 8;
         diceAvailable = 8;
         numRolls = 0;
@@ -303,8 +305,13 @@ public class Player {
         gold = 0;
         diamond = 0;
         skulls = 0;
+        saber = 0;
+        monkey = 0;
+        parrot = 0;
         rollScore = 0;
         setsScore = 0;
+        bonus = 0;
+        seaBattleMode = false;
         initialValues();
     }
 

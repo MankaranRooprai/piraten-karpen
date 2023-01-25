@@ -19,7 +19,7 @@ public class SeaBattleCards {
         seaBattleCardDeck.add(3);
         seaBattleCardDeck.add(4);
         seaBattleCardDeck.add(4);
-        for (int i = 0; i < 29; i++) {
+        for (int i = 0; i < 1; i++) {
             seaBattleCardDeck.add(0);
         }
         Collections.shuffle(seaBattleCardDeck);
