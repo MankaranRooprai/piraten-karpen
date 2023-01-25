@@ -152,7 +152,7 @@ public class Player {
                     diceAvailable = rand.nextInt((numDices - 2) + 1) + 2;
                 } else {
                     sets();
-                    rollScore = (diamond + gold + setsScore) * 100;
+                    rollScore = ((diamond + gold + setsScore) * 100) + bonus;
                     totalScore += rollScore;
                     rollScore = 0;
                     System.out.println("NUM ROLLS: " + rollCounter);
@@ -181,7 +181,7 @@ public class Player {
                 System.out.println();
                 System.out.println("END OF TURN");
                 System.out.println();
-                if (!firstRoll) {
+                if ((sabersRequired <= diceType.get(Faces.SABER.toString())) && !firstRoll) {
                     totalScore += rollScore;
                 }
                 System.out.println();
