@@ -33,6 +33,8 @@ public class Player {
     int sabersRequired = 0;
     int bonus = 0;
 
+    boolean seaBattleMode = false;
+
     HashMap<String, Integer> diceType = new HashMap<String, Integer>();
 
     SeaBattleCards cardDeck = new SeaBattleCards();
@@ -98,14 +100,17 @@ public class Player {
             System.out.println("SKULL: " + skulls);
             numDices--;
         } else if (rollResult.toString().equals("SABER")) {
+            saber++;
             System.out.println("SABER BEFORE ADDING: " + diceType.get(Faces.SABER.toString()));
             diceType.put(Faces.SABER.toString(), diceType.get(Faces.SABER.toString()) + 1);
             System.out.println("SABER AFTER ADDING: " + diceType.get(Faces.SABER.toString()));
         } else if (rollResult.toString().equals("MONKEY")) {
+            monkey++;
             System.out.println("MONKEY BEFORE ADDING: " + diceType.get(Faces.MONKEY.toString()));
             diceType.put(Faces.MONKEY.toString(), diceType.get(Faces.MONKEY.toString()) + 1);
             System.out.println("MONKEY AFTER ADDING: " + diceType.get(Faces.MONKEY.toString()));
         } else if (rollResult.toString().equals("PARROT")) {
+            parrot++;
             System.out.println("PARROT BEFORE ADDING: " + diceType.get(Faces.PARROT.toString()));
             diceType.put(Faces.PARROT.toString(), diceType.get(Faces.PARROT.toString()) + 1);
             System.out.println("PARROT AFTER ADDING: " + diceType.get(Faces.PARROT.toString()));
@@ -130,26 +135,33 @@ public class Player {
                 sabersRequired = cardDeck.drawRandom();
                 System.out.println("SABERS REQUIRED");
                 if (sabersRequired > 0) {
+                    seaBattleMode = true;
                     System.out.println("SEA BATTLE ACTIVATED");
                 } else {
                     System.out.println("NO SEA BATTLE");
                 }
                 diceAvailable = 8;
             } else {
-                numDices = 8 - skulls - diamond - gold;
-                for (String key : diceType.keySet()) {
-                    if (key != Faces.SKULL.toString() && key != Faces.DIAMOND.toString()
-                            && key != Faces.GOLD.toString()) {
+                if (!seaBattleMode) {
+                    numDices = 8 - skulls - diamond - gold;
+                    for (String key : diceType.keySet()) {
+                        if (key != Faces.SKULL.toString() && key != Faces.DIAMOND.toString()
+                                && key != Faces.GOLD.toString()) {
 
-                        System.out.println("KEY PAIR: " + diceType.get(key));
+                            System.out.println("KEY PAIR: " + diceType.get(key));
 
-                        if (diceType.get(key) >= 3) {
-                            numDices -= diceType.get(key);
+                            if (diceType.get(key) >= 3) {
+                                numDices -= diceType.get(key);
+                            }
                         }
                     }
+                } else {
+                    numDices = 8 - saber - skulls;
                 }
-                if (numDices >= 2) {
+                if (numDices >= 2 && !seaBattleMode) {
                     diceAvailable = rand.nextInt((numDices - 2) + 1) + 2;
+                } else if (numDices >= 2 && seaBattleMode) {
+                    diceAvailable = numDices;
                 } else {
                     sets();
                     rollScore = ((diamond + gold + setsScore) * 100) + bonus;
@@ -217,9 +229,13 @@ public class Player {
         gold = 0;
         diamond = 0;
         skulls = 0;
+        saber = 0;
+        monkey = 0;
+        parrot = 0;
         rollScore = 0;
         setsScore = 0;
         bonus = 0;
+        seaBattleMode = false;
         initialValues();
 
     }
