@@ -73,7 +73,7 @@ public class Game {
         System.out.println();
         LOGGER.info("This is an INFO level log message");
         LOGGER.trace("HELLO");
-        LOGGER.error("yo");
+        // LOGGER.error("yo");
         System.out.println("That's all folks!");
 
     }
