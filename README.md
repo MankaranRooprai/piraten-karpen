@@ -49,4 +49,4 @@ Remark: **We are assuming here you are using a _real_ shell (e.g., anything but 
 | ...  | F18 | Implement Sea Battle Cards for random strategy, but no strategy to deal with this scenario.                                                           |   D    | 01/24/23 | 01/24/23  |
 | ...  | F19 | Add monkey cards to deck.                                                                                                                             |   D    | 01/25/23 | 01/26/23  |
 | ...  | F20 | Activate monkey mode if monkey card is drawn.                                                                                                         |   D    | 01/25/23 | 01/26/23  |
-| ...  | F21 | Implement monkey mode to both combo and random strategy where parrot and monkey are added together to form sets.                                      |   P    | 01/25/23 |     -     |
+| ...  | F21 | Implement monkey mode to both combo and random strategy where parrot and monkey are added together to form sets.                                      |   D    | 01/25/23 | 01/26/23  |
