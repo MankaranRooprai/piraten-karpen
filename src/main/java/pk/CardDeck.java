@@ -5,31 +5,36 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class SeaBattleCards {
+public class CardDeck {
 
-    List<Integer> seaBattleCardDeck = new ArrayList<Integer>();
+    List<Integer> cardDeck = new ArrayList<Integer>();
     Random rand = new Random();
     int randomKey;
     int sabersRequired = 0;
 
     public void populate() {
-        seaBattleCardDeck.add(2);
-        seaBattleCardDeck.add(2);
-        seaBattleCardDeck.add(3);
-        seaBattleCardDeck.add(3);
-        seaBattleCardDeck.add(4);
-        seaBattleCardDeck.add(4);
-        for (int i = 0; i < 1; i++) {
-            seaBattleCardDeck.add(0);
+        cardDeck.add(2);
+        cardDeck.add(2);
+        cardDeck.add(3);
+        cardDeck.add(3);
+        cardDeck.add(4);
+        cardDeck.add(4);
+        // 10 represents monkey card
+        cardDeck.add(10);
+        cardDeck.add(10);
+        cardDeck.add(10);
+        cardDeck.add(10);
+        for (int i = 0; i < 25; i++) {
+            cardDeck.add(0);
         }
-        Collections.shuffle(seaBattleCardDeck);
+        Collections.shuffle(cardDeck);
     }
 
     public int drawRandom() {
 
-        randomKey = new Random().nextInt(seaBattleCardDeck.size());
+        randomKey = new Random().nextInt(cardDeck.size());
 
-        sabersRequired = seaBattleCardDeck.get(randomKey);
+        sabersRequired = cardDeck.get(randomKey);
 
         return sabersRequired;
     }

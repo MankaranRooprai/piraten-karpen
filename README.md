@@ -47,3 +47,4 @@ Remark: **We are assuming here you are using a _real_ shell (e.g., anything but 
 | ...  | F16 | Player earns bonus points if they get the minimum required sabers as written on their Sea Battle Card                                                 |   D    | 01/23/23 | 01/24/23  |
 | ...  | F17 | Create a Sea Battle strategy for combo strategy where user rerolls every dice that's not a saber until they have the sabers required for bonus points |   D    | 01/24/23 | 01/24/23  |
 | ...  | F18 | Implement Sea Battle Cards for random strategy, but no strategy to deal with this scenario.                                                           |   D    | 01/24/23 | 01/24/23  |
+| ...  | F19 | Add monkey cards to deck.                                                                                                                             |   P    | 01/25/23 |     -     |

@@ -9,17 +9,22 @@ public class Game {
     Player player1;
     Player player2;
 
+    int gamenum = 0;
+
     public Game(Player player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;
     }
 
     public void startGame() {
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 42; i++) {
+
+            // System.out.println("GAME " + gamenum);
+
             while (player1.getTotalScore() < 6000 || player2.getTotalScore() < 6000) {
-                System.out.println("Player 1: " + player1.getTotalScore());
-                player1.randomRerollStrategy();
-                System.out.println("Player 2: " + player2.getTotalScore());
+                // System.out.println("Player 1: " + player1.getTotalScore());
+                player1.comboStrategy();
+                // System.out.println("Player 2: " + player2.getTotalScore());
                 player2.randomRerollStrategy();
             }
 
@@ -49,6 +54,8 @@ public class Game {
 
             player1.resetScore();
             player2.resetScore();
+
+            gamenum++;
         }
 
         double winPercentage1 = ((Double.valueOf(player1.gamesWon()) / 42) * 100);

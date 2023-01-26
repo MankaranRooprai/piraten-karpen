@@ -2,7 +2,7 @@ package pk;
 
 import pk.Dice;
 import pk.Faces;
-import pk.SeaBattleCards;
+import pk.CardDeck;
 
 import java.util.Random;
 import java.util.ArrayList;
@@ -27,6 +27,8 @@ public class Player {
     int monkey = 0;
     int saber = 0;
 
+    int parrotMonkey = 0;
+
     int setsScore = 0;
     int rollScore = 0;
 
@@ -34,10 +36,11 @@ public class Player {
     int bonus = 0;
 
     boolean seaBattleMode = false;
+    boolean monkeyMode = false;
 
     HashMap<String, Integer> diceType = new HashMap<String, Integer>();
 
-    SeaBattleCards cardDeck = new SeaBattleCards();
+    CardDeck cardDeck = new CardDeck();
 
     Dice dice;
 
@@ -54,28 +57,30 @@ public class Player {
         diceType.put(Faces.SKULL.toString(), 0);
         diceType.put(Faces.MONKEY.toString(), 0);
         diceType.put(Faces.PARROT.toString(), 0);
+        // diceType.put("PARROTMONKEY", (diceType.get(Faces.PARROT.toString()) +
+        // diceType.get(Faces.MONKEY.toString())));
     }
 
     public void sets() {
         for (String key : diceType.keySet()) {
             if (key != Faces.SKULL.toString()) {
                 if (diceType.get(key) == 3) {
-                    System.out.println("Set of 3: " + key);
+                    // System.out.println("Set of 3: " + key);
                     setsScore += 1;
                 } else if (diceType.get(key) == 4) {
-                    System.out.println("Set of 4: " + key);
+                    // System.out.println("Set of 4: " + key);
                     setsScore += 2;
                 } else if (diceType.get(key) == 5) {
-                    System.out.println("Set of 5: " + key);
+                    // System.out.println("Set of 5: " + key);
                     setsScore += 5;
                 } else if (diceType.get(key) == 6) {
-                    System.out.println("Set of 6: " + key);
+                    // System.out.println("Set of 6: " + key);
                     setsScore += 10;
                 } else if (diceType.get(key) == 7) {
-                    System.out.println("Set of 7: " + key);
+                    // System.out.println("Set of 7: " + key);
                     setsScore += 20;
                 } else if (diceType.get(key) == 8) {
-                    System.out.println("Set of 8: " + key);
+                    // System.out.println("Set of 8: " + key);
                     setsScore += 40;
                 }
             }
@@ -83,44 +88,85 @@ public class Player {
     }
 
     public int calculateRollScore(Faces rollResult) {
+
         if (rollResult.toString().equals("DIAMOND") || rollResult.toString().equals("GOLD")) {
             if (rollResult.toString().equals("DIAMOND")) {
-                System.out.println("DIAMOND BEFORE ADDING: " + diceType.get(Faces.DIAMOND.toString()));
+                // System.out.println("DIAMOND BEFORE ADDING: " +
+                // diceType.get(Faces.DIAMOND.toString()));
                 diceType.put(Faces.DIAMOND.toString(), diceType.get(Faces.DIAMOND.toString()) + 1);
-                System.out.println("DIAMOND AFTER ADDING: " + diceType.get(Faces.DIAMOND.toString()));
+                // System.out.println("DIAMOND AFTER ADDING: " +
+                // diceType.get(Faces.DIAMOND.toString()));
                 diamond++;
             } else if (rollResult.toString().equals("GOLD")) {
-                System.out.println("GOLD BEFORE ADDING: " + diceType.get(Faces.GOLD.toString()));
+                // System.out.println("GOLD BEFORE ADDING: " +
+                // diceType.get(Faces.GOLD.toString()));
                 diceType.put(Faces.GOLD.toString(), diceType.get(Faces.GOLD.toString()) + 1);
-                System.out.println("GOLD AFTER ADDING: " + diceType.get(Faces.GOLD.toString()));
+                // System.out.println("GOLD AFTER ADDING: " +
+                // diceType.get(Faces.GOLD.toString()));
                 gold++;
             }
         } else if (rollResult.toString().equals("SKULL")) {
             skulls++;
-            System.out.println("SKULL: " + skulls);
+            // System.out.println("SKULL: " + skulls);
             numDices--;
         } else if (rollResult.toString().equals("SABER")) {
             saber++;
-            System.out.println("SABER BEFORE ADDING: " + diceType.get(Faces.SABER.toString()));
+            // System.out.println("SABER BEFORE ADDING: " +
+            // diceType.get(Faces.SABER.toString()));
             diceType.put(Faces.SABER.toString(), diceType.get(Faces.SABER.toString()) + 1);
-            System.out.println("SABER AFTER ADDING: " + diceType.get(Faces.SABER.toString()));
+            // System.out.println("SABER AFTER ADDING: " +
+            // diceType.get(Faces.SABER.toString()));
         } else if (rollResult.toString().equals("MONKEY")) {
             monkey++;
-            System.out.println("MONKEY BEFORE ADDING: " + diceType.get(Faces.MONKEY.toString()));
+            // System.out.println("MONKEY BEFORE ADDING: " +
+            // diceType.get(Faces.MONKEY.toString()));
             diceType.put(Faces.MONKEY.toString(), diceType.get(Faces.MONKEY.toString()) + 1);
-            System.out.println("MONKEY AFTER ADDING: " + diceType.get(Faces.MONKEY.toString()));
+            // System.out.println("MONKEY AFTER ADDING: " +
+            // diceType.get(Faces.MONKEY.toString()));
         } else if (rollResult.toString().equals("PARROT")) {
             parrot++;
-            System.out.println("PARROT BEFORE ADDING: " + diceType.get(Faces.PARROT.toString()));
+            // System.out.println("PARROT BEFORE ADDING: " +
+            // diceType.get(Faces.PARROT.toString()));
             diceType.put(Faces.PARROT.toString(), diceType.get(Faces.PARROT.toString()) + 1);
-            System.out.println("PARROT AFTER ADDING: " + diceType.get(Faces.PARROT.toString()));
+            // System.out.println("MONKEY AFTER ADDING: " +
+            // diceType.get(Faces.MONKEY.toString()));
         }
 
-        sets();
+        if (monkeyMode && (rollResult.toString().equals("PARROT") || rollResult.toString().equals("MONKEY"))) {
+            parrotMonkey = diceType.get(Faces.PARROT.toString())
+                    + diceType.get(Faces.MONKEY.toString());
+            // System.out.println("PARROT+MONKEY ADDING: " +
+            // (diceType.get(Faces.PARROT.toString())
+            // + diceType.get(Faces.MONKEY.toString())));
+
+            if (parrotMonkey == 3) {
+                // System.out.println("Set of 3: " + parrotMonkey);
+                setsScore += 1;
+            } else if (parrotMonkey == 4) {
+                // System.out.println("Set of 4: " + parrotMonkey);
+                setsScore += 2;
+            } else if (parrotMonkey == 5) {
+                // System.out.println("Set of 5: " + parrotMonkey);
+                setsScore += 5;
+            } else if (parrotMonkey == 6) {
+                // System.out.println("Set of 6: " + parrotMonkey);
+                setsScore += 10;
+            } else if (parrotMonkey == 7) {
+                // System.out.println("Set of 7: " + parrotMonkey);
+                setsScore += 20;
+            } else if (parrotMonkey == 8) {
+                // System.out.println("Set of 8: " + parrotMonkey);
+                setsScore += 40;
+            }
+
+        } else {
+            sets();
+        }
+
         bonus = cardDeck.calculateBonus(diceType.get(Faces.SABER.toString()));
         rollScore = ((diamond + gold + setsScore) * 100) + bonus;
         setsScore = 0;
-        System.out.println("ROLL SCORE: " + rollScore);
+        // System.out.println("ROLL SCORE: " + rollScore);
         return rollScore;
     }
 
@@ -132,13 +178,15 @@ public class Player {
         while (skulls < 3 && totalScore < 6000) {
 
             if (firstRoll) {
-                sabersRequired = cardDeck.drawRandom();
-                System.out.println("SABERS REQUIRED");
-                if (sabersRequired > 0) {
+                int mode = cardDeck.drawRandom();
+                if (mode < 10 && mode > 0) {
+                    // System.out.println("SEA BATTLE ACTIVATED");
+                    // System.out.println("SABERS REQUIRED: " + mode);
+                    sabersRequired = mode;
                     seaBattleMode = true;
-                    System.out.println("SEA BATTLE ACTIVATED");
-                } else {
-                    System.out.println("NO SEA BATTLE");
+                } else if (mode == 10) {
+                    // System.out.println("MONKEY MODE ACTIVATED");
+                    monkeyMode = true;
                 }
                 diceAvailable = 8;
             } else {
@@ -148,7 +196,7 @@ public class Player {
                         if (key != Faces.SKULL.toString() && key != Faces.DIAMOND.toString()
                                 && key != Faces.GOLD.toString()) {
 
-                            System.out.println("KEY PAIR: " + diceType.get(key));
+                            // System.out.println("KEY PAIR: " + diceType.get(key));
 
                             if (diceType.get(key) >= 3) {
                                 numDices -= diceType.get(key);
@@ -167,47 +215,47 @@ public class Player {
                     rollScore = ((diamond + gold + setsScore) * 100) + bonus;
                     totalScore += rollScore;
                     rollScore = 0;
-                    System.out.println("NUM ROLLS: " + rollCounter);
-                    System.out.println();
-                    System.out.println("END OF TURN");
-                    System.out.println();
-                    System.out.println();
-                    System.out.println("TURN SCORE: " + totalScore);
-                    System.out.println();
+                    // System.out.println("NUM ROLLS: " + rollCounter);
+                    // System.out.println();
+                    // System.out.println("END OF TURN");
+                    // System.out.println();
+                    // System.out.println();
+                    // System.out.println("TURN SCORE: " + totalScore);
+                    // System.out.println();
                     numRolls++;
                     break;
                 }
             }
 
-            System.out.println("NUMBER OF DICE BEING ROLLED: " + diceAvailable);
+            // System.out.println("NUMBER OF DICE BEING ROLLED: " + diceAvailable);
 
             for (int i = 0; i < diceAvailable; i++) {
                 Faces rollResult = dice.roll();
-                System.out.println("ROLL RESULT: " + rollResult);
+                // System.out.println("ROLL RESULT: " + rollResult);
                 calculateRollScore(rollResult);
             }
 
             if (skulls >= 3) {
                 rollCounter++;
-                System.out.println("NUM ROLLS: " + rollCounter);
-                System.out.println();
-                System.out.println("END OF TURN");
-                System.out.println();
+                // System.out.println("NUM ROLLS: " + rollCounter);
+                // System.out.println();
+                // System.out.println("END OF TURN");
+                // System.out.println();
                 if ((sabersRequired <= diceType.get(Faces.SABER.toString())) && !firstRoll) {
                     totalScore += rollScore;
                 }
-                System.out.println();
-                System.out.println("TURN SCORE: " + totalScore);
-                System.out.println();
+                // System.out.println();
+                // System.out.println("TURN SCORE: " + totalScore);
+                // System.out.println();
                 numRolls++;
                 break;
             } else {
-                System.out.println("Roll score: " + rollScore);
-                System.out.println("ROLLING AGAIN");
+                // System.out.println("Roll score: " + rollScore);
+                // System.out.println("ROLLING AGAIN");
                 rollCounter++;
-                System.out.println("NUM ROLLS: " + rollCounter);
+                // System.out.println("NUM ROLLS: " + rollCounter);
                 rollScore = 0;
-                System.out.println("ROLL SCORE RESET: " + rollScore);
+                // System.out.println("ROLL SCORE RESET: " + rollScore);
             }
 
             firstRoll = false;
@@ -231,7 +279,9 @@ public class Player {
         rollScore = 0;
         setsScore = 0;
         bonus = 0;
+        parrotMonkey = 0;
         seaBattleMode = false;
+        monkeyMode = false;
         initialValues();
 
     }
@@ -244,48 +294,50 @@ public class Player {
         while (skulls < 3 && totalScore < 6000) {
 
             if (firstRoll) {
-                sabersRequired = cardDeck.drawRandom();
-                System.out.println("SABERS REQUIRED");
-                if (sabersRequired > 0) {
+                int mode = cardDeck.drawRandom();
+                if (mode < 10 && mode > 0) {
+                    // System.out.println("SEA BATTLE ACTIVATED");
+                    // System.out.println("SABERS REQUIRED");
+                    sabersRequired = mode;
                     seaBattleMode = true;
-                    System.out.println("SEA BATTLE ACTIVATED");
-                } else {
-                    System.out.println("NO SEA BATTLE");
+                } else if (mode == 10) {
+                    // System.out.println("MONKEY MODE ACTIVATED");
+                    monkeyMode = true;
                 }
                 diceAvailable = 8;
             } else {
                 diceAvailable = rand.nextInt((numDices - 2) + 1) + 2;
             }
 
-            System.out.println("NUMBER OF DICE BEING ROLLED: " + diceAvailable);
+            // System.out.println("NUMBER OF DICE BEING ROLLED: " + diceAvailable);
 
             for (int i = 0; i < diceAvailable; i++) {
                 Faces rollResult = dice.roll();
-                System.out.println("ROLL RESULT: " + rollResult);
+                // System.out.println("ROLL RESULT: " + rollResult);
                 calculateRollScore(rollResult);
             }
 
             if (skulls >= 3) {
                 rollCounter++;
-                System.out.println("NUM ROLLS: " + rollCounter);
-                System.out.println();
-                System.out.println("END OF TURN");
-                System.out.println();
+                // System.out.println("NUM ROLLS: " + rollCounter);
+                // System.out.println();
+                // System.out.println("END OF TURN");
+                // System.out.println();
                 if ((sabersRequired <= diceType.get(Faces.SABER.toString())) && !firstRoll) {
                     totalScore += rollScore;
                 }
-                System.out.println();
-                System.out.println("TURN SCORE: " + totalScore);
-                System.out.println();
+                // System.out.println();
+                // System.out.println("TURN SCORE: " + totalScore);
+                // System.out.println();
                 numRolls++;
                 break;
             } else {
-                System.out.println("Roll score: " + rollScore);
-                System.out.println("ROLLING AGAIN");
+                // System.out.println("Roll score: " + rollScore);
+                // System.out.println("ROLLING AGAIN");
                 rollCounter++;
-                System.out.println("NUM ROLLS: " + rollCounter);
+                // System.out.println("NUM ROLLS: " + rollCounter);
                 rollScore = 0;
-                System.out.println("ROLL SCORE RESET: " + rollScore);
+                // System.out.println("ROLL SCORE RESET: " + rollScore);
             }
 
             firstRoll = false;
@@ -295,6 +347,7 @@ public class Player {
             setsScore = 0;
             numRolls++;
             rollScore = 0;
+            parrotMonkey = 0;
             initialValues();
         }
 
@@ -311,7 +364,9 @@ public class Player {
         rollScore = 0;
         setsScore = 0;
         bonus = 0;
+        parrotMonkey = 0;
         seaBattleMode = false;
+        monkeyMode = false;
         initialValues();
     }
 
