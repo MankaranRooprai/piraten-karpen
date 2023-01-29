@@ -27,7 +27,7 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>2.19.0</version>
-    </dependency>
+        </dependency>
         <!-- Add Appache CLI here-->
     </dependencies>
 

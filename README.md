@@ -15,6 +15,10 @@
   - `mvn package`
 - To run the packaged delivery:
   - `java -jar target/piraten-karpen-jar-with-dependencies.jar`
+- To run the game with command line strategies:
+  - `java -jar target/piraten-karpen-jar-with-dependencies.jar random combo`
+- To run the game with trace mode on (logging):
+  - `java -jar target/piraten-karpen-jar-with-dependencies.jar random combo trace`
 
 Remark: **We are assuming here you are using a _real_ shell (e.g., anything but PowerShell on Windows)**
 

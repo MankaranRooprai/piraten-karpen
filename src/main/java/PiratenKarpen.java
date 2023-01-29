@@ -10,11 +10,19 @@ public class PiratenKarpen {
         Dice dice1 = new Dice();
         Dice dice2 = new Dice();
 
-        Player player1 = new Player(dice1);
+        // store command line arguments and pass them to different classes
+        String strategy1 = args[0];
+        String strategy2 = args[1];
+        String trace = "";
+        if (args.length == 3) {
+            trace = args[2];
+        }
 
-        Player player2 = new Player(dice2);
+        Player player1 = new Player(dice1, strategy1, strategy2, trace);
 
-        Game game = new Game(player1, player2);
+        Player player2 = new Player(dice2, strategy1, strategy2, trace);
+
+        Game game = new Game(player1, player2, strategy1, strategy2, trace);
 
         game.startGame();
     }

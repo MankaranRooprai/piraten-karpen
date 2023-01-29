@@ -9,55 +9,78 @@ public class Game {
     Player player1;
     Player player2;
 
-    int gamenum = 0;
+    String strategy1 = "";
+    String strategy2 = "";
+    String trace = "";
 
-    public Game(Player player1, Player player2) {
+    // initalize players
+    public Game(Player player1, Player player2, String strategy1, String strategy2, String trace) {
         this.player1 = player1;
         this.player2 = player2;
+        this.strategy1 = strategy1;
+        this.strategy2 = strategy2;
+        this.trace = trace;
     }
 
     public void startGame() {
+
+        if (trace.equalsIgnoreCase("trace"))
+            LOGGER.info("STARTING GAME");
+
+        // run for 42 games
         for (int i = 0; i < 42; i++) {
 
-            // System.out.println("GAME " + gamenum);
+            // play the game while both player's have less than 6000 points
+            while (player1.getTotalScore() < 6000 && player2.getTotalScore() < 6000) {
 
-            while (player1.getTotalScore() < 6000 || player2.getTotalScore() < 6000) {
-                // System.out.println("Player 1: " + player1.getTotalScore());
-                player1.comboStrategy();
-                // System.out.println("Player 2: " + player2.getTotalScore());
-                player2.randomRerollStrategy();
+                if (trace.equalsIgnoreCase("trace")) {
+                    LOGGER.info("PLAYER 1's TURN");
+                    LOGGER.info("PLAYER 1 IS " + strategy1);
+                }
+
+                // select player 1's strategy based off argument 1
+                if (strategy1.equals("random")) {
+                    player1.randomRerollStrategy();
+                } else if (strategy1.equals("combo")) {
+                    player1.comboStrategy();
+                }
+
+                if (trace.equalsIgnoreCase("trace")) {
+                    LOGGER.info("PLAYER 2's TURN");
+                    LOGGER.info("PLAYER 2 IS " + strategy2);
+                }
+
+                // select player 2's strategy based off argument 2
+                if (strategy2.equals("random")) {
+                    player2.randomRerollStrategy();
+                } else if (strategy2.equals("combo")) {
+                    player2.comboStrategy();
+                }
+
             }
 
+            if (trace.equalsIgnoreCase("trace")) {
+                LOGGER.info("PLAYER 1 WITH " + player1.getTotalScore() + " POINTS");
+                LOGGER.info("PLAYER 2 WITH " + player2.getTotalScore() + " POINTS");
+            }
+
+            // check which player won the game depending on their total scores
             if (player1.getTotalScore() > player2.getTotalScore()) {
+                if (trace.equalsIgnoreCase("trace"))
+                    LOGGER.info("PLAYER 1 WON THE GAME");
                 player1.wonGame();
             } else if (player1.getTotalScore() < player2.getTotalScore()) {
+                if (trace.equalsIgnoreCase("trace"))
+                    LOGGER.info("PLAYER 2 WON THE GAME");
                 player2.wonGame();
             }
 
-            // if (player1.gamesWon() > player2.gamesWon()) {
-            // // System.out.println("PLAYER 1 IS THE WINNER with " + player1.gamesWon() + "
-            // // games won!");
-            // // System.out.println("PLAYER 2 IS THE WINNER with " + player2.gamesWon() + "
-            // // games won!");
-            // // System.out.println("Games tied: " + (42 - player1.gamesWon() -
-            // // player2.gamesWon()));
-            // } else if (player1.gamesWon() < player2.gamesWon()) {
-            // // System.out.println("PLAYER 2 IS THE WINNER with " + player2.gamesWon() + "
-            // // games won!");
-            // // System.out.println("PLAYER 1 IS THE WINNER with " + player1.gamesWon() + "
-            // // games won!");
-            // // System.out.println("Games tied: " + (42 - player1.gamesWon() -
-            // // player2.gamesWon()));
-            // } else {
-            // System.out.println("Tie.");
-            // }
-
+            // reset the score at the end of one game
             player1.resetScore();
             player2.resetScore();
-
-            gamenum++;
         }
 
+        // calculate the win percentage
         double winPercentage1 = ((Double.valueOf(player1.gamesWon()) / 42) * 100);
         double winPercentage2 = ((Double.valueOf(player2.gamesWon()) / 42) * 100);
         double tiePercentage = ((Double.valueOf((42 - player1.gamesWon() - player2.gamesWon())) / 42) * 100);
@@ -71,9 +94,6 @@ public class Game {
         System.out.printf("Tie percentage: %.3f", tiePercentage);
         System.out.print("%");
         System.out.println();
-        LOGGER.info("This is an INFO level log message");
-        LOGGER.trace("HELLO");
-        // LOGGER.error("yo");
         System.out.println("That's all folks!");
 
     }
