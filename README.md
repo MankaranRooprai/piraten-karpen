@@ -3,7 +3,7 @@
 - Author: Mankaran Singh Rooprai
 - Email: roopraim@mcmaster.ca
 
-This Java program simulates the popular game "Piraten Karpen" where players roll dice to collect treasures and engage in battles.
+This Java program simulates the popular game "Piraten Karpen" in the command-line where players roll dice to collect treasures and engage in battles.
 
 ## Features
 
