@@ -1,4 +1,4 @@
-# A1 - Piraten Karpen
+# Piraten Karpen
 
 - Author: Mankaran Singh Rooprai
 - Email: roopraim@mcmaster.ca
