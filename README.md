@@ -3,6 +3,31 @@
 - Author: Mankaran Singh Rooprai
 - Email: roopraim@mcmaster.ca
 
+This Java program simulates the popular game "Piraten Karpen" where players roll dice to collect treasures and engage in battles.
+
+## Features
+
+- **Player Class**: Contains the main logic for simulating player actions, rolling dice, and calculating scores.
+- **Two Strategies**: Two strategies are implemented for the player:
+  - **Combo Strategy**: A strategy where the player strategically decides which dice to reroll based on the current game state.
+  - **Random Reroll Strategy**: A strategy where the player randomly selects a number of dice to reroll each turn.
+- **Logging**: Utilizes Log4j for logging game events and strategies.
+- **Card Deck**: Represents a deck of cards that influence gameplay by activating special modes like sea battles or monkey mode.
+
+## Strategies
+
+### Combo Strategy
+
+This strategy involves strategic decision-making based on the current game state. The player decides which dice to reroll to maximize their score while avoiding risks like collecting too many skulls.
+
+### Random Reroll Strategy
+
+In this strategy, the player randomly selects a number of dice to reroll each turn. It's a simpler approach compared to the combo strategy but still aims to maximize score and avoid accumulating skulls.
+
+## Logging
+
+The game utilizes Log4j for logging important events and decisions made during gameplay. This allows for better understanding of the simulation process and helps in debugging.
+
 ## Build and Execution
 
 - To clean your working directory:
